@@ -22,13 +22,6 @@ def inflation_view(request):
                                    'Nov': row[reader.fieldnames[11]],
                                    'Dec': row[reader.fieldnames[12]],
                                    'Sum': row[reader.fieldnames[13]]})
-#            z = float(row[reader.fieldnames[8]])
- #           if z < 0:
-  #              print ('green')
-   #         else:
-    #            if z > 5:
-     #               print('darkred')
-
     context = {'inflation_stat': inflation_stat}
     return render(request, template_name,
                   context)
