@@ -1,3 +1,5 @@
+{% load cellfilters %}
+
 <!DOCTYPE html>{% load static %}
 <html>
   <head>
@@ -17,9 +19,46 @@
       <div class="row">
         <h1 class="col s12">Инфляция в России</h1>
         <div class="col s12 m8">
-        
-        <!-- Ваша логика -->
-
+          <table class="u-full-width">
+            <thead>
+              <tr>
+                <th>Год</th>
+                <th>Январь</th>
+                <th>Февраль</th>
+                <th>Март</th>
+                <th>Апрель</th>
+                <th>Май</th>
+                <th>Июнь</th>
+                <th>Июль</th>
+                <th>Август</th>
+                <th>Сентябрь</th>
+                <th>Октябрь</th>
+                <th>Ноябрь</th>
+                <th>Декабрь</th>
+                <th>Всего</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for year in inflation_stat %}
+              <tr>
+                <td>{{ year.Year }}</td>
+                <td bgcolor={{ year.Jan|cellcl }}>{{ year.Jan|default:"-" }}</td>
+                <td bgcolor={{ year.Feb|cellcl }}>{{ year.Feb|default:"-" }}</td>
+                <td bgcolor={{ year.Mar|cellcl }}>{{ year.Mar|default:"-" }}</td>
+                <td bgcolor={{ year.Apr|cellcl }}>{{ year.Apr|default:"-" }}</td>
+                <td bgcolor={{ year.May|cellcl }}>{{ year.May|default:"-" }}</td>
+                <td bgcolor={{ year.Jun|cellcl }}>{{ year.Jun|default:"-" }}</td>
+                <td bgcolor={{ year.Jul|cellcl }}>{{ year.Jul|default:"-" }}</td>
+                <td bgcolor={{ year.Aug|cellcl }}>{{ year.Aug|default:"-" }}</td>
+                <td bgcolor={{ year.Sep|cellcl }}>{{ year.Sep|default:"-" }}</td>
+                <td bgcolor={{ year.Oct|cellcl }}>{{ year.Oct|default:"-" }}</td>
+                <td bgcolor={{ year.Nov|cellcl }}>{{ year.Nov|default:"-" }}</td>
+                <td bgcolor={{ year.Dec|cellcl }}>{{ year.Dec|default:"-" }}</td>
+                <td bgcolor="gray">{{ year.Sum }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+           </table>
         </div>
       </div>
     {% endblock %}
