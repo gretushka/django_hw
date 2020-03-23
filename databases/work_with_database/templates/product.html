@@ -4,11 +4,21 @@
 {% block title %}Телефон{% endblock %}
 {% block content %}
     <div class="container">
+        {% if phone == None %}
         <div class="header">
-            <h1>Телефон</h1>
+            <h1> Упс</h1>
+            <h6> Такого телефона нет в каталоге</h6>
+        </div>
+        {% else %}
+        <div class="header">
+            <h1>{{ phone.name }}</h1>
         </div>
         <div class="content">
-
+            <h4> Стоимость {{ phone.price }}</h4>
+            <img src={{ phone.image }} width="179" height="300">
+            <h6> Дата выхода {{ phone.release_date }}</h6>
+            <h6> Наличие LTE  {{ phone.lte_exists|yesno:"да,нет" }}</h6>
         </div>
+        {% endif %}
     </div>
 {% endblock %}

@@ -17,4 +17,15 @@ class Command(BaseCommand):
 
             for line in phone_reader:
                 # TODO: Добавьте сохранение модели
-                pass
+                if Phone.objects.filter(id=line[0]):
+                    pass
+                else:
+                    Phone.objects.create(id = line[0],
+                                         name = line[1],
+                                         price = line[3],
+                                         image = line[2],
+                                         release_date = line[4],
+                                         lte_exists = line[5],
+                                         slug = ''.join('_' if c == ' ' else c for c in line[1])
+                )
+

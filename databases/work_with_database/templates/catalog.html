@@ -10,10 +10,46 @@
 
         <div class="sort-block">
             {# Здесь должен быть раздел с сортировкой #}
+            <table class="u-full-width" cellpadding="10">
+                <tbody>
+                  <tr>
+                    <td>Сортировать по:</td>
+                    <td><a href="?sort=name">  названию  </a></td>
+                    <td><a href="?sort=min_price">  начиная с дешёвых  </a></td>
+                    <td><a href="?sort=max_price">  начиная с дорогих  </a></td>
+                  </tr>
+                </tbody>
+            </table>
         </div>
-
+        <br/>
         <div class="content">
-            {# Здесь должен отображаться каталог с телефонами #}
+            <table cols="2" class="u-full-width">
+              <thead>
+              </thead>
+              <tbody>
+              {% for phone in phones %}
+                {% cycle "1" "2" as col_num silent %}
+                <td>
+                  <table>
+                      <tbody>
+                        <tr>
+                            <td><a href="/catalog/{{ phone.slug }}">{{ phone.name }}</a></td>
+                        </tr>
+                        <tr>
+                            <td>Стоимость {{ phone.price }}</td>
+                        </tr>
+                        <tr>
+                            <td><img src={{ phone.image }} width="189" height="300" alt="lorem"></td>
+                        </tr>
+                      </tbody>
+                  </table>
+                </td>
+              {% if col_num|divisibleby:"2" %}
+              <tr></tr>
+              {% endif %}
+              {% endfor %}
+              </tbody>
+             </table>
         </div>
     </div>
 {% endblock %}
