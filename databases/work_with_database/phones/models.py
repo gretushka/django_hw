@@ -16,5 +16,5 @@ class Phone(models.Model):
 
     lte_exists = models.BooleanField()
 
-    slug = models.SlugField(name)
+    slug = models.SlugField()
 

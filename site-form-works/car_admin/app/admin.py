@@ -5,10 +5,17 @@ from .forms import ReviewAdminForm
 
 
 class CarAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('brand', 'model', 'review_count')
+    list_filter = ['brand']
+    search_fields = ('brand', 'model')
+
+
 
 
 class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('car', 'title')
+    list_filter = ['car']
+    search_fields = ('title',)
     form = ReviewAdminForm
 
 

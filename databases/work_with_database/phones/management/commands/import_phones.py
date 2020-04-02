@@ -26,6 +26,7 @@ class Command(BaseCommand):
                                          image = line[2],
                                          release_date = line[4],
                                          lte_exists = line[5],
-                                         slug = ''.join('_' if c == ' ' else c for c in line[1])
+                                         slug = slugify(line[1])
+                                         #slug = ''.join('_' if c == ' ' else c for c in line[1])
                 )
 
