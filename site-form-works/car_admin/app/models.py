@@ -15,6 +15,7 @@ class Car(models.Model):
 
     def review_count(self):
         return Review.objects.filter(car=self).count()
+    review_count.short_description = ('Количество обзоров')
 
 
 class Review(models.Model):

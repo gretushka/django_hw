@@ -6,7 +6,14 @@
 {% block content %}
     <div class="container">
         <div class="header"></div>
+        {% if request.user.is_authenticated %}
+            Привет, <b>{{ user.get_username }}</b>.<br>
+            <a class="button button-primary" href="/signup">Зарегистрировать нового пользователя</a>
+            <a class="button button-primary" href="/login">Авторизоваться под другим пользователем</a>
+            <a class="button button-primary" href="/logout">Выйти</a>
+        {% else %}
             Привет, <b>гость</b>.<br>
             Пожалуйста, <a href="/signup">зарегистрируйся</a> или <a href="/login">авторизуйся</a>!
+        {% endif %}
     </div>
 {% endblock %}

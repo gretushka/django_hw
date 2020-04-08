@@ -7,6 +7,38 @@
     <div class="container">
         <div class="header">
             <h1>Игра "Угадай число"</h1>
+            {% if player == 1 %}
+                 {% if start_game %}
+                      <p> Введите диапазон для розыгрыша случайного числа</p>
+                      <form method="POST">
+                          {% csrf_token %}
+                          {{ form }}
+                          <br>
+                          <input type="submit" value="Сгенерировать игру"/>
+                       </form>
+                 {% else %}
+                     <p> {{ text }}</p>
+                 {% endif %}
+            {% else %}
+                  {% if start_game %}
+                      <p> Для Вас создана игра. Попробуйте угадать случайное число в диапазоне от {{ min }} до {{max}} </p>
+                      <form  method="POST">
+                          {% csrf_token %}
+                          {{ form }}
+                          <br>
+                          <input type="submit" value="Проверить"/>
+                       </form>
+                  {% else %}
+                      {% if not end_game %}
+                          <form  method="POST">
+                              {% csrf_token %}
+                              {{ form }} <input type="submit" value="Проверить"/>
+                          </form>
+                          <br>
+                      {% endif %}
+                      <p> {{ text }}</p>
+                  {% endif %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}
