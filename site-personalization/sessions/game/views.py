@@ -60,11 +60,17 @@ def show_home(request):
                     game.max_value = form.cleaned_data.get('max_value')
                     game.game_value = random.randint(game.min_value, game.max_value)
                     game.save()
-                context = {
-                    'player': 1,
-                    'start_game': False,
-                    'text': f'Ваше число {game.game_value}',
-                }
+                    context = {
+                        'player': 1,
+                        'start_game': False,
+                        'text': f'Ваше число {game.game_value}',
+                    }
+                else:
+                    context = {
+                        'player': 1,
+                        'start_game': True,
+                        'form': form,
+                    }
             else:
                 # guess attempt
                 form = Player2Form(request.POST)
